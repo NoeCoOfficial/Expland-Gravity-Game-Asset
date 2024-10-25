@@ -29,8 +29,7 @@ text = "Press the spacebar, watch the player fall
 back to the ground. Now, move the player 
 to the red platform on the ground
 and step on it. The grey cube will fall and 
-respawn after you move out of the 
-red platform and back into it."
+respawn after 2 seconds."
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xlx5t"]
 albedo_color = Color(1, 0, 0, 1)
@@ -84,7 +83,7 @@ size = Vector3(9.85791, 5.48779, 16.7933)
 transform = Transform3D(-1.18338, 0, -1.03454e-07, 1.03454e-07, -5.17271e-08, -1.18338, -4.52213e-15, -1.18338, 5.17271e-08, 3.45169, 3.61752, 11.0703)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(4.393, 0, 0, 0, 4.393, 0, 0, 0, 13.9338, 0.738868, 3.51942, -12.5134)
+transform = Transform3D(4.393, 0, 0, 0, 4.393, 0, 0, 0, 13.9338, 0.93899, 3.51942, -12.5134)
 mesh = SubResource("TextMesh_r52l0")
 
 [node name="PressurePlate" type="Area3D" parent="."]
@@ -106,5 +105,5 @@ mesh = SubResource("BoxMesh_dgwl6")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GravityDropable"]
 shape = SubResource("BoxShape3D_f7jgy")
 
-[connection signal="body_entered" from="PressurePlate" to="GravityDropable" method="_on_pressure_plate_body_entered"]
-[connection signal="body_exited" from="PressurePlate" to="GravityDropable" method="_on_pressure_plate_body_exited"]
+[connection signal="body_entered" from="PressurePlate" to="." method="_on_pressure_plate_body_entered"]
+[connection signal="body_exited" from="PressurePlate" to="." method="_on_pressure_plate_body_exited"]
