@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhtjxwey6f5ld"]
+
+[ext_resource type="PackedScene" uid="uid://bsljbif1rji7e" path="res://Scenes and Scripts/Player/3DPlayer.tscn" id="1_6l6pc"]
+[ext_resource type="PackedScene" uid="uid://djy2hvlrfsmor" path="res://3D Models/Notice.blend" id="2_voajr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gdkvv"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_joqt5"]
+sky_material = SubResource("ProceduralSkyMaterial_gdkvv")
+
+[sub_resource type="Environment" id="Environment_wsre4"]
+background_mode = 2
+sky = SubResource("Sky_joqt5")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xw0we"]
+albedo_color = Color(0.15, 0.15, 0.15, 1)
+
+[node name="World" type="Node3D"]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_wsre4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="3DPlayer" parent="." instance=ExtResource("1_6l6pc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.141595, -2)
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="GrassThing" type="CSGBox3D" parent="Objects"]
+transform = Transform3D(1.59899, 0, 0, 0, 1.59899, 0, 0, 0, 1.59899, 0.538818, -0.77202, -0.306824)
+material_override = SubResource("StandardMaterial3D_xw0we")
+use_collision = true
+size = Vector3(9.85791, 1, 16.7933)
+
+[node name="GrassThing2" type="CSGBox3D" parent="Objects"]
+transform = Transform3D(0.503609, 0, 0, 0, 1.59899, 0, 0, 0, 0.920567, -6.22012, 2.85577, -1.60727)
+material_override = SubResource("StandardMaterial3D_xw0we")
+use_collision = true
+size = Vector3(9.85791, 5.48779, 16.7933)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.144196, -7.40733)
+use_collision = true
+size = Vector3(1, 1.28839, 1)
+
+[node name="Notice" parent="." instance=ExtResource("2_voajr")]
+transform = Transform3D(1.91069e-15, 1, -4.37114e-08, 4.37114e-08, -4.37114e-08, -1, -1, 0, -4.37114e-08, -3.70372, 6.3585, 4.89237)

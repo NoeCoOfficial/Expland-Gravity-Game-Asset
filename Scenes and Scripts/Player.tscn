@@ -1,0 +1,662 @@
+[gd_scene load_steps=33 format=3 uid="uid://cjm5lrxicdgsf"]
+
+[ext_resource type="Script" path="res://Scenes and Scripts/Scenes/Player/Player_SCRIPT.gd" id="1_5mhs1"]
+[ext_resource type="Script" path="res://Textures/Icons/Script Icons/Scripts/CameraIcon_SCRIPT.gd" id="2_37tst"]
+[ext_resource type="Texture2D" uid="uid://tmqrfb1atg1j" path="res://Textures/Crosshairs/Expland_Crosshair.png" id="2_606ex"]
+[ext_resource type="Script" path="res://Textures/Icons/Script Icons/Scripts/ClockIcon_SCRIPT.gd" id="2_t6toi"]
+[ext_resource type="FontFile" uid="uid://bhbimgl3hvve3" path="res://Fonts/CabinetGrotesk/CabinetGrotesk-Bold.otf" id="3_yecwp"]
+[ext_resource type="Script" path="res://Scenes and Scripts/Scenes/Player/CrosshairCanvas/HealthLBL_SCRIPT.gd" id="4_56i84"]
+[ext_resource type="Script" path="res://Scenes and Scripts/Scenes/Player/OverlayLayer/RedOverlay_SCRIPT.gd" id="7_gnu1v"]
+[ext_resource type="PackedScene" uid="uid://dhhjltxmoydio" path="res://Scenes and Scripts/Scenes/Player/Inventory/InventorySlot.tscn" id="8_ads4s"]
+[ext_resource type="Script" path="res://Scenes and Scripts/Scenes/Player/OverlayLayer/Overlay_SCRIPT.gd" id="8_uxqns"]
+[ext_resource type="Script" path="res://Scenes and Scripts/Scenes/Player/DeathScreen/BlackOverlay_SCRIPT.gd" id="9_g6nwl"]
+[ext_resource type="Script" path="res://Scenes and Scripts/Utility Scripts/IgnoreMouseFilter.gd" id="9_svfxy"]
+[ext_resource type="PackedScene" uid="uid://bah2p5efhcjtx" path="res://Scenes and Scripts/Scenes/Player/Inventory/InventoryDropable.tscn" id="9_w7on1"]
+[ext_resource type="Script" path="res://Scenes and Scripts/Scenes/Player/DeathScreen/RandomText_SCRIPT.gd" id="10_6w37c"]
+[ext_resource type="Script" path="res://Scenes and Scripts/Scenes/Player/DeathScreen/GetUp_SCRIPT.gd" id="11_0enap"]
+[ext_resource type="Script" path="res://Scenes and Scripts/Utility Scripts/PassMouseFilter.gd" id="16_wg7d4"]
+[ext_resource type="FontFile" uid="uid://bxegprouyv1nh" path="res://Fonts/CabinetGrotesk/CabinetGrotesk-Medium.otf" id="17_fk422"]
+[ext_resource type="Theme" uid="uid://ceasxu5q233w7" path="res://Resources/Styles and Themes/Themes/Default.tres" id="17_rhxkt"]
+[ext_resource type="StyleBox" uid="uid://3txnt8ebd3yh" path="res://Resources/Styles and Themes/Styles/Default/Backgrounds and Foregrounds/BlackBGwithWhiteBorder.tres" id="19_b2wvi"]
+[ext_resource type="StyleBox" uid="uid://com3tix0pshhk" path="res://Resources/Styles and Themes/Styles/Default/Label/Default_Label.tres" id="19_nviyp"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_e8ep2"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_o1e22"]
+points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kg3l"]
+bg_color = Color(0.151276, 0.151276, 0.151276, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="GDScript" id="GDScript_tq46f"]
+script/source = "extends Panel
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	pass
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xa5l0"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tmhy"]
+bg_color = Color(0.103744, 0.103744, 0.103744, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+
+[sub_resource type="GDScript" id="GDScript_dc442"]
+script/source = "extends Panel
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	pass
+"
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_lsdpx"]
+thickness = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxwsg"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5tcjk"]
+bg_color = Color(0.125911, 0.125911, 0.125911, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mjkpl"]
+bg_color = Color(0.125911, 0.125911, 0.125911, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyrcn"]
+bg_color = Color(0.255659, 0.255659, 0.255659, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_kcv34"]
+default_font = ExtResource("3_yecwp")
+Button/styles/hover = SubResource("StyleBoxFlat_5tcjk")
+Button/styles/normal = SubResource("StyleBoxFlat_mjkpl")
+Button/styles/pressed = SubResource("StyleBoxFlat_gyrcn")
+Label/styles/normal = ExtResource("19_nviyp")
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_5mhs1")
+Fade_In = true
+CROUCH_JUMP_VELOCITY = 2.0
+CROUCH_SPEED = 2.0
+CROUCH_INTERPOLATION = 8.0
+
+[node name="AutoSaveTimer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+script = ExtResource("2_t6toi")
+
+[node name="ManualSaveCooldown" type="Timer" parent="."]
+wait_time = 0.001
+one_shot = true
+autostart = true
+script = ExtResource("2_t6toi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_e8ep2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("ConvexPolygonShape3D_o1e22")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66439, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+script = ExtResource("2_37tst")
+
+[node name="CrosshairCanvas" type="CanvasLayer" parent="Head/Camera3D"]
+visible = false
+
+[node name="HealthLBL" type="Label" parent="Head/Camera3D/CrosshairCanvas"]
+anchors_preset = -1
+anchor_left = 0.00260417
+anchor_top = 0.00462963
+anchor_right = 0.0789931
+anchor_bottom = 0.0354938
+offset_right = -1.52588e-05
+theme_override_fonts/font = ExtResource("3_yecwp")
+theme_override_font_sizes/font_size = 17
+text = "Health : 100"
+script = ExtResource("4_56i84")
+metadata/_edit_use_anchors_ = true
+
+[node name="Crosshair" type="TextureRect" parent="Head/Camera3D/CrosshairCanvas"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 9.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_606ex")
+expand_mode = 1
+
+[node name="InventoryLayer" type="CanvasLayer" parent="Head/Camera3D"]
+visible = false
+
+[node name="Background" type="Panel" parent="Head/Camera3D/InventoryLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.5
+offset_top = -194.0
+offset_right = 173.5
+offset_bottom = 194.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kg3l")
+script = SubResource("GDScript_tq46f")
+
+[node name="Background_2" type="Panel" parent="Head/Camera3D/InventoryLayer"]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = -1
+anchor_left = 0.356771
+anchor_top = 0.212963
+anchor_right = 0.643229
+anchor_bottom = 0.787037
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xa5l0")
+script = SubResource("GDScript_tq46f")
+metadata/_edit_use_anchors_ = true
+
+[node name="Background_3" type="Panel" parent="Head/Camera3D/InventoryLayer"]
+anchors_preset = -1
+anchor_left = 0.356771
+anchor_top = 0.212963
+anchor_right = 0.643229
+anchor_bottom = 0.279321
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7tmhy")
+script = SubResource("GDScript_tq46f")
+metadata/_edit_use_anchors_ = true
+
+[node name="Overlay" type="Panel" parent="Head/Camera3D/InventoryLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_dc442")
+
+[node name="Title" type="Label" parent="Head/Camera3D/InventoryLayer"]
+anchors_preset = -1
+anchor_left = 0.388021
+anchor_top = 0.205247
+anchor_right = 0.612847
+anchor_bottom = 0.296296
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_yecwp")
+theme_override_font_sizes/font_size = 35
+text = "INVENTORY"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("9_svfxy")
+metadata/_edit_use_anchors_ = true
+
+[node name="debug_slot_info" type="Label" parent="Head/Camera3D/InventoryLayer"]
+anchors_preset = -1
+anchor_left = 0.174479
+anchor_top = 0.0601852
+anchor_right = 0.826389
+anchor_bottom = 0.151235
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_yecwp")
+theme_override_font_sizes/font_size = 20
+text = "You have not released on a slot yet"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("9_svfxy")
+metadata/_edit_use_anchors_ = true
+
+[node name="Slot1" parent="Head/Camera3D/InventoryLayer" groups=["Slot1"] instance=ExtResource("8_ads4s")]
+position = Vector2(470, 237)
+
+[node name="Slot2" parent="Head/Camera3D/InventoryLayer" groups=["Slot2"] instance=ExtResource("8_ads4s")]
+position = Vector2(576, 237)
+
+[node name="Slot3" parent="Head/Camera3D/InventoryLayer" groups=["Slot3"] instance=ExtResource("8_ads4s")]
+position = Vector2(683, 237)
+
+[node name="Slot4" parent="Head/Camera3D/InventoryLayer" groups=["Slot4"] instance=ExtResource("8_ads4s")]
+position = Vector2(469, 345)
+
+[node name="Slot5" parent="Head/Camera3D/InventoryLayer" groups=["Slot5"] instance=ExtResource("8_ads4s")]
+position = Vector2(575, 345)
+
+[node name="Slot6" parent="Head/Camera3D/InventoryLayer" groups=["Slot6"] instance=ExtResource("8_ads4s")]
+position = Vector2(682, 345)
+
+[node name="Slot7" parent="Head/Camera3D/InventoryLayer" groups=["Slot7"] instance=ExtResource("8_ads4s")]
+position = Vector2(469, 452)
+
+[node name="Slot8" parent="Head/Camera3D/InventoryLayer" groups=["Slot8"] instance=ExtResource("8_ads4s")]
+position = Vector2(575, 452)
+
+[node name="Slot9" parent="Head/Camera3D/InventoryLayer" groups=["Slot9"] instance=ExtResource("8_ads4s")]
+position = Vector2(682, 452)
+
+[node name="Dropable" parent="Head/Camera3D/InventoryLayer" instance=ExtResource("9_w7on1")]
+position = Vector2(1041, 85)
+ITEM_TYPE = "ROCK"
+
+[node name="DeathScreen" type="CanvasLayer" parent="Head/Camera3D"]
+visible = false
+
+[node name="BlackOverlay" type="ColorRect" parent="Head/Camera3D/DeathScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("9_g6nwl")
+
+[node name="RandomText" type="Label" parent="Head/Camera3D/DeathScreen/BlackOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.0
+offset_top = -29.5
+offset_right = 233.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_yecwp")
+theme_override_font_sizes/font_size = 30
+text = "What have you done?"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("10_6w37c")
+
+[node name="GetUp" type="Label" parent="Head/Camera3D/DeathScreen/BlackOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -29.5
+offset_right = 140.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_yecwp")
+theme_override_font_sizes/font_size = 30
+text = "Get Up."
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("11_0enap")
+
+[node name="OverlayLayer" type="CanvasLayer" parent="Head/Camera3D"]
+visible = false
+
+[node name="RedOverlay" type="ColorRect" parent="Head/Camera3D/OverlayLayer"]
+process_priority = 10
+editor_description = "A Multipurpose overlay."
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.016, 0, 0.808)
+script = ExtResource("7_gnu1v")
+
+[node name="Overlay" type="ColorRect" parent="Head/Camera3D/OverlayLayer"]
+process_priority = 10
+editor_description = "A Multipurpose overlay."
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("8_uxqns")
+
+[node name="PauseLayer" type="CanvasLayer" parent="Head/Camera3D"]
+visible = false
+
+[node name="GreyLayer" type="ColorRect" parent="Head/Camera3D/PauseLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.643137)
+script = ExtResource("16_wg7d4")
+
+[node name="Title" type="Label" parent="Head/Camera3D/PauseLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -166.5
+offset_top = 24.0
+offset_right = 166.5
+offset_bottom = 83.0
+grow_horizontal = 2
+theme = ExtResource("17_rhxkt")
+theme_override_font_sizes/font_size = 50
+text = "GAME PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("16_wg7d4")
+
+[node name="Resume_Btn" type="Button" parent="Head/Camera3D/PauseLayer"]
+anchors_preset = -1
+anchor_left = 0.413194
+anchor_top = 0.267747
+anchor_right = 0.586806
+anchor_bottom = 0.386574
+offset_top = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme = ExtResource("17_rhxkt")
+theme_override_font_sizes/font_size = 42
+text = "RESUME"
+script = ExtResource("16_wg7d4")
+metadata/_edit_use_anchors_ = true
+
+[node name="Settings_Btn" type="Button" parent="Head/Camera3D/PauseLayer"]
+anchors_preset = -1
+anchor_left = 0.413194
+anchor_top = 0.392747
+anchor_right = 0.586806
+anchor_bottom = 0.511574
+offset_top = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme = ExtResource("17_rhxkt")
+theme_override_font_sizes/font_size = 38
+text = "SETTINGS"
+script = ExtResource("16_wg7d4")
+metadata/_edit_use_anchors_ = true
+
+[node name="SaveAndQuit_Btn" type="Button" parent="Head/Camera3D/PauseLayer"]
+anchors_preset = -1
+anchor_left = 0.413194
+anchor_top = 0.581018
+anchor_right = 0.586806
+anchor_bottom = 0.699845
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme = ExtResource("17_rhxkt")
+theme_override_font_sizes/font_size = 27
+text = "SAVE AND QUIT"
+script = ExtResource("16_wg7d4")
+metadata/_edit_use_anchors_ = true
+
+[node name="SettingsLayer" type="CanvasLayer" parent="Head/Camera3D"]
+
+[node name="GreyLayer" type="ColorRect" parent="Head/Camera3D/SettingsLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.643137)
+script = ExtResource("16_wg7d4")
+
+[node name="MainLayer" type="Control" parent="Head/Camera3D/SettingsLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("16_wg7d4")
+
+[node name="BG" type="Button" parent="Head/Camera3D/SettingsLayer/MainLayer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.327257
+anchor_top = 0.150463
+anchor_right = 0.672743
+anchor_bottom = 0.849537
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = ExtResource("19_b2wvi")
+theme_override_styles/hover = ExtResource("19_b2wvi")
+theme_override_styles/pressed = ExtResource("19_b2wvi")
+script = ExtResource("16_wg7d4")
+
+[node name="SettingsTabContainer" type="TabContainer" parent="Head/Camera3D/SettingsLayer/MainLayer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33724
+anchor_top = 0.161265
+anchor_right = 0.66276
+anchor_bottom = 0.838735
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("17_fk422")
+theme_override_font_sizes/font_size = 21
+current_tab = 1
+script = ExtResource("16_wg7d4")
+
+[node name="General" type="TabBar" parent="Head/Camera3D/SettingsLayer/MainLayer/SettingsTabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+script = ExtResource("16_wg7d4")
+
+[node name="Sound" type="TabBar" parent="Head/Camera3D/SettingsLayer/MainLayer/SettingsTabContainer"]
+layout_mode = 2
+focus_mode = 0
+script = ExtResource("16_wg7d4")
+
+[node name="VSlider" type="VSlider" parent="Head/Camera3D/SettingsLayer/MainLayer/SettingsTabContainer/Sound"]
+layout_mode = 0
+anchor_left = 0.0786656
+anchor_top = 0.107143
+anchor_right = 0.137332
+anchor_bottom = 0.698276
+offset_right = -2.0
+metadata/_edit_use_anchors_ = true
+
+[node name="VSlider2" type="VSlider" parent="Head/Camera3D/SettingsLayer/MainLayer/SettingsTabContainer/Sound"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.249333
+anchor_top = 0.107143
+anchor_right = 0.307999
+anchor_bottom = 0.698276
+metadata/_edit_use_anchors_ = true
+
+[node name="VSlider3" type="VSlider" parent="Head/Camera3D/SettingsLayer/MainLayer/SettingsTabContainer/Sound"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.42
+anchor_top = 0.107143
+anchor_right = 0.478667
+anchor_bottom = 0.698276
+metadata/_edit_use_anchors_ = true
+
+[node name="Video" type="TabBar" parent="Head/Camera3D/SettingsLayer/MainLayer/SettingsTabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+script = ExtResource("16_wg7d4")
+
+[node name="FOVSlider" type="HSlider" parent="Head/Camera3D/SettingsLayer/MainLayer/SettingsTabContainer/Video"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0413321
+anchor_top = 0.0861188
+anchor_right = 0.484
+anchor_bottom = 0.132391
+offset_right = 1.52588e-05
+focus_mode = 0
+theme_override_constants/center_grabber = -1
+theme_override_styles/slider = SubResource("StyleBoxLine_lsdpx")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_nxwsg")
+min_value = 60.0
+max_value = 140.0
+value = 60.0
+rounded = true
+metadata/_edit_use_anchors_ = true
+
+[node name="FOVTTL" type="Label" parent="Head/Camera3D/SettingsLayer/MainLayer/SettingsTabContainer/Video"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0266681
+anchor_top = 0.0244223
+anchor_right = 0.581334
+anchor_bottom = 0.104114
+offset_right = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("17_rhxkt")
+theme_override_font_sizes/font_size = 17
+text = "Field of Vision (FOV)"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="FOVValue" type="Label" parent="Head/Camera3D/SettingsLayer/MainLayer/SettingsTabContainer/Video"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.513333
+anchor_top = 0.071
+anchor_right = 0.628
+anchor_bottom = 0.150386
+offset_top = -0.123953
+offset_right = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("17_rhxkt")
+theme_override_font_sizes/font_size = 18
+text = "00"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ExitSettingsButton" type="Button" parent="Head/Camera3D/SettingsLayer/MainLayer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = 166.5
+offset_right = 54.0
+offset_bottom = 217.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme = SubResource("Theme_kcv34")
+theme_override_font_sizes/font_size = 40
+text = "EXIT"
+script = ExtResource("16_wg7d4")
+
+[node name="SaveOverlay" type="CanvasLayer" parent="Head/Camera3D"]
+visible = false
+
+[node name="LighterBG" type="ColorRect" parent="Head/Camera3D/SaveOverlay"]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.0277778
+anchor_right = 1.25608
+anchor_bottom = 0.123457
+offset_right = 0.00134277
+color = Color(0.255659, 0.255659, 0.255659, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="DarkerBG" type="ColorRect" parent="Head/Camera3D/SaveOverlay"]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.0277778
+anchor_right = 1.25608
+anchor_bottom = 0.123457
+color = Color(0.140447, 0.140447, 0.140447, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Info" type="Label" parent="Head/Camera3D/SaveOverlay/DarkerBG"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0237285
+anchor_top = 0.16129
+anchor_right = 0.983037
+anchor_bottom = 0.822579
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_yecwp")
+theme_override_font_sizes/font_size = 23
+text = "Progress saved successfully"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="AutoSaveTimer" to="." method="_on_auto_save_timer_timeout"]
+[connection signal="pressed" from="Head/Camera3D/PauseLayer/Resume_Btn" to="." method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="Head/Camera3D/PauseLayer/Settings_Btn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="Head/Camera3D/PauseLayer/SaveAndQuit_Btn" to="." method="_on_save_and_quit_btn_pressed"]
+[connection signal="value_changed" from="Head/Camera3D/SettingsLayer/MainLayer/SettingsTabContainer/Video/FOVSlider" to="." method="_on_fov_slider_value_changed"]
+[connection signal="pressed" from="Head/Camera3D/SettingsLayer/MainLayer/ExitSettingsButton" to="." method="_on_exit_settings_button_pressed"]
+
+[editable path="Head/Camera3D/InventoryLayer/Dropable"]
